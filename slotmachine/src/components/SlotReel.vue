@@ -54,7 +54,7 @@
     beforeMount: function beforeMount() {
       // Build up the reelTileData array with random tiles  
       var frs = [];
-      var count = this.reelTileCount;
+      //var count = this.reelTileCount;
       this.audio.spin.volume = 0.3;
       this.audio.spinEnd.volume = 0.8;
       this.audio.lock.volume = 0.2;

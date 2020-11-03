@@ -3,9 +3,9 @@
         <div class="SlotMachine-reels">
             <div class="SlotMachine-shadow"></div>
             <div class="SlotMachine-payline"></div>
-            <slot-reel ref="reel1" :canlock="canlock" v-on:stopped="reelStopped"></slot-reel>
-            <slot-reel ref="reel2" :canlock="canlock" v-on:stopped="reelStopped"></slot-reel>
-            <slot-reel ref="reel3" :canlock="canlock" v-on:stopped="reelStopped"></slot-reel>
+            <SlotReel ref="reel1" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
+            <SlotReel ref="reel2" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
+            <SlotReel ref="reel3" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
         </div>
         <div class="SlotMachine-stats">
             <div class="SlotMachine-coin" v-on:mousedown="insertCoin()"></div>
@@ -32,7 +32,7 @@
 
     export default {
         name: 'SlotMachine',
-        comments:{
+        components:{
             SlotReel
         },
         data: function data() {

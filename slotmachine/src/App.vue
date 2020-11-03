@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Slot />
+    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+    <SlotMachine />
   </div>
 </template>
 
