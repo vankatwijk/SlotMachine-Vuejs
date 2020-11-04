@@ -48,23 +48,23 @@
         reelSourceData: [{
           name: 'Lemon',
           value: 2,
-          image: '/img/Lemon-512.png'
+          image: '/img/hand.png'
         }, {
           name: 'Melon',
           value: 4,
-          image: '/img/Watermelon-512.png'
+          image: '/img/pumpkin.png'
         }, {
           name: 'Grapes',
           value: 10,
-          image: '/img/Grapes-512.png'
+          image: '/img/hat.png'
         }, {
           name: 'Cherry',
           value: 16,
-          image: '/img/Cherry-512.png'
+          image: '/img/pot.png'
         }, {
           name: 'Bar',
           value: 32,
-          image: '/img/bar-512.png'
+          image: '/img/wild.png'
         }],
         reelIndex: 2,
         tile1Index: 0,
