@@ -44,15 +44,15 @@
                 canlock: true,
                 waslocked: false,
                 audio: {
-                    win: new Audio('https://freesound.org/data/previews/387/387232_1474204-lq.mp3'),
-                    insertCoin: new Audio('https://freesound.org/data/previews/276/276091_5123851-lq.mp3'),
-                    bigwin: new Audio('https://freesound.org/data/previews/270/270319_5123851-lq.mp3')
+                    // win: new Audio('https://freesound.org/data/previews/387/387232_1474204-lq.mp3'),
+                    // insertCoin: new Audio('https://freesound.org/data/previews/276/276091_5123851-lq.mp3'),
+                    // bigwin: new Audio('https://freesound.org/data/previews/270/270319_5123851-lq.mp3')
                 }
             };
         },
         beforeMount: function beforeMount() {},
         mounted: function mounted() {
-            window.addEventListener('keydown', this.keydown);
+            // window.addEventListener('keydown', this.keydown);
         },
         computed: {},
         methods: {
@@ -88,8 +88,8 @@
                 }
             },
             insertCoin: function insertCoin() {
-                this.audio.insertCoin.currentTime = 0;
-                this.audio.insertCoin.play();
+                // this.audio.insertCoin.currentTime = 0;
+                // this.audio.insertCoin.play();
                 this.credits += .5;
                 this.spend += .5;
             },
@@ -122,9 +122,9 @@
                     var v3 = this.resultData[2];
                     if (v1.name === v2.name && v2.name === v3.name) {
                         if (v1.value >= 10) {
-                            this.audio.bigwin.play();
+                            // this.audio.bigwin.play();
                         } else {
-                            this.audio.win.play();
+                            // this.audio.win.play();
                         }
                         this.win += v1.value;
                         this.waslocked = true; // prevent lock after an unlocked win

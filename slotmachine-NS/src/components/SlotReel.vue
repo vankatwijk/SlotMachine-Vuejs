@@ -39,32 +39,32 @@
       return {
         momentum: null,
         audio: {
-          spin: new Audio('/sounds/spin.mp3'),
-          spinEnd: new Audio('/sounds/spin_end.mp3'),
-          lock: new Audio('/sounds/lock.mp3')
+          // spin: new Audio('/sounds/spin.mp3'),
+          // spinEnd: new Audio('/sounds/spin_end.mp3'),
+          // lock: new Audio('/sounds/lock.mp3')
         },
         reelTileCount: 15,
         reelTileData: null,
         reelSourceData: [{
           name: 'Lemon',
           value: 2,
-          image: '/img/hand.png'
+          image: '~/assets/images/hand.png'
         }, {
           name: 'Melon',
           value: 4,
-          image: '/img/pumpkin.png'
+          image: '~/assets/images/pumpkin.png'
         }, {
           name: 'Grapes',
           value: 10,
-          image: '/img/hat.png'
+          image: '~/assets/images/hat.png'
         }, {
           name: 'Cherry',
           value: 16,
-          image: '/img/pot.png'
+          image: '~/assets/images/pot.png'
         }, {
           name: 'Bar',
           value: 32,
-          image: '/img/wild.png'
+          image: '~/assets/images/wild.png'
         }],
         reelIndex: 2,
         tile1Index: 0,
@@ -79,10 +79,10 @@
       // Build up the reelTileData array with random tiles  
       var frs = [];
       //var count = this.reelTileCount;
-      this.audio.spin.volume = 0.3;
-      this.audio.spinEnd.volume = 0.8;
-      this.audio.lock.volume = 0.2;
-      this.audio.spin.currentTime = 0.3;
+      // this.audio.spin.volume = 0.3;
+      // this.audio.spinEnd.volume = 0.8;
+      // this.audio.lock.volume = 0.2;
+      // this.audio.spin.currentTime = 0.3;
       // Method 1, random until count is reached
       // while (count > 0) {
       //   const fruitIndex = Math.floor(Math.random() * this.reelSourceData.length)
@@ -139,7 +139,7 @@
           var max = 28;
           var momentum = Math.floor(Math.random() * (max - min + 1) + min);
           this.momentum = momentum;
-          this.audio.spin.play();
+          // this.audio.spin.play();
           this.animate();
         } else {
           this.locked = false;
@@ -157,9 +157,9 @@
           setTimeout(this.animate, 10);
         } else {
           this.$emit('stopped', this.reelTileData[this.reelIndex]);
-          this.audio.spinEnd.play();
-          this.audio.spin.pause();
-          this.audio.spin.currentTime = 0.3;
+          // this.audio.spinEnd.play();
+          // this.audio.spin.pause();
+          // this.audio.spin.currentTime = 0.3;
         }
       },
       reIndex: function reIndex() {
@@ -176,7 +176,7 @@
       lock: function lock() {
         if (this.canlock) {
           this.locked = !this.locked;
-          this.audio.lock.play();
+          // this.audio.lock.play();
         }
       }
     }

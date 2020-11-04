@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SlotMachine from './components/SlotMachine.vue'
+import SlotMachine from './SlotMachine.vue'
 
 export default {
   name: 'App',
