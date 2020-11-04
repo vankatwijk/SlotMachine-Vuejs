@@ -1,9 +1,32 @@
 <template>
   <div class="Reel" v-bind:class="{'is-locked':locked}" v-on:mousedown="lock()">
-    <div class="Reel-inner"> <img class="Reel-image" :src="reelTileData[tile1Index].image" /> <img class="Reel-image"
-        :src="reelTileData[tile2Index].image" /> <img class="Reel-image" :src="reelTileData[tile3Index].image" /> <img
-        class="Reel-image" :src="reelTileData[tile4Index].image" /> <img class="Reel-image"
-        :src="reelTileData[tile5Index].image" /> </div>
+    <div class="Reel-inner"> 
+      
+        <img 
+        class="Reel-image" 
+        :src="reelTileData[tile1Index].image" 
+        /> 
+        
+        <img 
+        class="Reel-image"
+        :src="reelTileData[tile2Index].image" 
+        /> 
+        
+        <img 
+        class="Reel-image" 
+        :src="reelTileData[tile3Index].image" 
+        /> 
+        
+        <img
+        class="Reel-image" 
+        :src="reelTileData[tile4Index].image" 
+        /> 
+
+        <img 
+        class="Reel-image"
+        :src="reelTileData[tile5Index].image" 
+        /> 
+    </div>
   </div>
 </template>
 
@@ -11,36 +34,37 @@
   export default {
     name: 'SlotReel',
     props: ['value', 'canlock'],
+    //freesound.org
     data: function data() {
       return {
         momentum: null,
         audio: {
-          spin: new Audio('https://freesound.org/data/previews/120/120373_824230-lq.mp3'),
-          spinEnd: new Audio('https://freesound.org/data/previews/145/145441_2615119-lq.mp3'),
-          lock: new Audio('https://freesound.org/data/previews/56/56246_91374-lq.mp3')
+          spin: new Audio('/sounds/spin.mp3'),
+          spinEnd: new Audio('/sounds/spin_end.mp3'),
+          lock: new Audio('/sounds/lock.mp3')
         },
         reelTileCount: 15,
         reelTileData: null,
         reelSourceData: [{
           name: 'Lemon',
           value: 2,
-          image: 'https://cdn4.iconfinder.com/data/icons/slot-machines/512/Lemon-512.png'
+          image: '/img/Lemon-512.png'
         }, {
           name: 'Melon',
           value: 4,
-          image: 'https://cdn4.iconfinder.com/data/icons/slot-machines/512/Watermelon-512.png'
+          image: '/img/Watermelon-512.png'
         }, {
           name: 'Grapes',
           value: 10,
-          image: 'https://cdn4.iconfinder.com/data/icons/slot-machines/512/Grapes-512.png'
+          image: '/img/Grapes-512.png'
         }, {
           name: 'Cherry',
           value: 16,
-          image: 'https://cdn4.iconfinder.com/data/icons/slot-machines/512/Cherry-512.png'
+          image: '/img/Cherry-512.png'
         }, {
           name: 'Bar',
           value: 32,
-          image: 'https://cdn4.iconfinder.com/data/icons/casino-games/512/bar-512.png'
+          image: '/img/bar-512.png'
         }],
         reelIndex: 2,
         tile1Index: 0,
