@@ -11,12 +11,12 @@
             <div class="SlotMachine-coin" v-on:mousedown="insertCoin()"></div>
             <div class="SlotMachine-stat is-credit">
                 <div class="SlotMachine-statTitle">Credits</div>
-                <div class="SlotMachine-statValue">\u20AC {{credits.toFixed(2)}}</div>
-                <div class="SlotMachine-statSub">spend \u20AC {{spend.toFixed(2)}}</div>
+                <div class="SlotMachine-statValue">{{credits.toFixed(2)}}</div>
+                <div class="SlotMachine-statSub">spend {{spend.toFixed(2)}}</div>
             </div>
             <div class="SlotMachine-stat is-win">
                 <div class="SlotMachine-statTitle">Won</div>
-                <div class="SlotMachine-statValue">\u20AC {{win.toFixed(2)}}</div>
+                <div class="SlotMachine-statValue">{{win.toFixed(2)}}</div>
             </div>
         </div>
         <div class="SlotMachine-actions"> <button class="SlotMachine-button is-spin"
