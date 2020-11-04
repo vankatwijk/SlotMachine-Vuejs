@@ -5,7 +5,7 @@
   "description": "slotmachine game",
   "author": "vankatwijk <hendrikus.hpvk@gmail.com>",
   "license": "MIT",
-  "dependencies": { 
+  "dependencies": {
     "vuex": "^3.5.1",
     "@vue/devtools": "^5.3.3",
     "nativescript-socketio": "^3.3.1",
