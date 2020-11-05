@@ -1,7 +1,7 @@
 <template>
 
     <Page>
-        <ActionBar title="Welcome to NativeScript-Vue!"/>
+        <ActionBar title="Slooots"/>
         <GridLayout columns="*" rows="*">
             <SlotMachine />
         </GridLayout>
