@@ -1,6 +1,6 @@
 <template>
-  <StackLayout class="Reel" v-bind:class="{'is-locked':locked}" v-on:mousedown="lock()">
-    <StackLayout class="Reel-inner"> 
+  <StackLayout class="Reel" :class="{'is-locked':locked}" :tap="lock()">
+    <StackLayout class="Reel-inner" backgroundColor="red"> 
       
         <Image 
         class="Reel-image" 
@@ -125,7 +125,8 @@
         return array;
       }
 
-      this.reelTileData = shuffle(frs);
+      this.reelTileData = frs;
+      console.log('[suffle]',this.reelTileData)
     },
     mounted: function mounted() {
       this.$el.addEventListener("transitionend", this.animateEnd);

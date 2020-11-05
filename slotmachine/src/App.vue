@@ -84,7 +84,7 @@ html, body {
 .SlotMachine-coin {
   width: 6px;
   height: 38px;
-  background: rgb(20, 20, 20);
+  background: grey;
   border: 3px solid rgb(40, 40, 40);
   border-radius: 6px;
   margin: 12px 10px 0 10px;

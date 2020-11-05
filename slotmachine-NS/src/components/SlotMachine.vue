@@ -1,30 +1,42 @@
 <template>
-    <StackLayout class="SlotMachine">
-        <StackLayout class="SlotMachine-reels">
+
+
+    <GridLayout columns="*" rows="4*, 2*, 2*" backgroundColor="#3c495e" class="SlotMachine">
+        <Label text="0,0" row="0" col="0" backgroundColor="#43b883"/>
+        <Label text="0,1" row="0" col="1" backgroundColor="#1c6b48"/>
+        <Label text="1,0" row="1" col="0" backgroundColor="#289062"/>
+        <Label text="1,1" row="1" col="1" backgroundColor="#43b883"/>
+
+
+        <StackLayout orientation="horizontal" row="0" col="1" class="SlotMachine-reels">
             <StackLayout class="SlotMachine-shadow"></StackLayout>
             <StackLayout class="SlotMachine-payline"></StackLayout>
             <SlotReel ref="reel1" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
             <SlotReel ref="reel2" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
             <SlotReel ref="reel3" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
         </StackLayout>
-        <StackLayout class="SlotMachine-stats">
-            <StackLayout class="SlotMachine-coin" v-on:mousedown="insertCoin()"></StackLayout>
-            <StackLayout class="SlotMachine-stat is-credit">
-                <StackLayout class="SlotMachine-statTitle">Credits</StackLayout>
-                <StackLayout class="SlotMachine-statValue">{{credits.toFixed(2)}}</StackLayout>
-                <StackLayout class="SlotMachine-statSub">spend {{spend.toFixed(2)}}</StackLayout>
+
+        <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats">
+            <button class="SlotMachine-coin" width="30" v-on:tap="insertCoin()"></button>
+            <StackLayout width="100" class="SlotMachine-stat is-credit">
+                <Label class="SlotMachine-statTitle" text="Credits"/>
+                <TextField class="SlotMachine-statValue" isEnabled="false" :text="credits.toFixed(2)"/>
+                <Label class="SlotMachine-statSub" :text="'spend '+spend.toFixed(2)"/>
             </StackLayout>
-            <StackLayout class="SlotMachine-stat is-win">
-                <StackLayout class="SlotMachine-statTitle">Won</StackLayout>
-                <StackLayout class="SlotMachine-statValue">{{win.toFixed(2)}}</StackLayout>
-            </StackLayout>
-        </StackLayout>
-        <StackLayout class="SlotMachine-actions"> <button class="SlotMachine-button is-spin"
-                v-on:mousedown="spin()">Play</button>
-            <StackLayout class="SlotMachine-button is-win" v-bind:class="{'has-win':win}" v-on:mousedown="takeWin()">Take Win
+            <StackLayout width="100" class="SlotMachine-stat is-win">
+                <Label class="SlotMachine-statTitle" text="Won"/>
+                <TextField class="SlotMachine-statValue" isEnabled="false" :text="win.toFixed(2)"/>
             </StackLayout>
         </StackLayout>
-    </StackLayout>
+        <StackLayout orientation="horizontal" row="2" col="0" class="SlotMachine-actions"> 
+            <button class="SlotMachine-button is-spin" width="70" v-on:mousedown="spin()">Play</button>
+            <button class="SlotMachine-button is-win" width="70" :class="{'has-win':win}" :tap="takeWin()">Take Win </button>
+        </StackLayout>
+
+
+
+    </GridLayout>
+
 </template>
 
 <script>
