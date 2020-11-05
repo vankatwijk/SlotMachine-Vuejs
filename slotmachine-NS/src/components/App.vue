@@ -190,9 +190,6 @@ html, body {
 
 
 .Reel {
-  width: 90px;
-  height: 209.97px;
-  overflow: hidden;
 }
 .Reel.is-locked {
 /*   opacity: 0.8; */
@@ -218,7 +215,7 @@ html, body {
   margin-top: 90px;
 }
 .Reel-image {
-  width: 90px;
-  width: 90px;
+  width: 90;
+  width: 90;
 }
 </style>

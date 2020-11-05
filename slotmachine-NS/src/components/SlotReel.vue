@@ -1,30 +1,30 @@
 <template>
-  <StackLayout class="Reel" :class="{'is-locked':locked}" :tap="lock()">
+  <StackLayout class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="30%">
     <StackLayout class="Reel-inner" backgroundColor="red"> 
       
         <Image 
         class="Reel-image" 
-        :src="reelTileData[tile1Index].image" 
+        :src="'res://'+reelTileData[tile1Index].image" 
         /> 
         
         <Image 
         class="Reel-image"
-        :src="reelTileData[tile2Index].image" 
+        :src="'res://'+reelTileData[tile2Index].image" 
         /> 
         
         <Image 
         class="Reel-image" 
-        :src="reelTileData[tile3Index].image" 
+        :src="'res://'+reelTileData[tile3Index].image" 
         /> 
         
         <Image
         class="Reel-image" 
-        :src="reelTileData[tile4Index].image" 
+        :src="'res://'+reelTileData[tile4Index].image" 
         /> 
 
         <Image 
         class="Reel-image"
-        :src="reelTileData[tile5Index].image" 
+        :src="'res://'+reelTileData[tile5Index].image" 
         /> 
     </StackLayout>
   </StackLayout>
@@ -48,23 +48,23 @@
         reelSourceData: [{
           name: 'Lemon',
           value: 2,
-          image: '~/assets/images/hand.png'
+          image: 'hand'
         }, {
           name: 'Melon',
           value: 4,
-          image: '~/assets/images/pumpkin.png'
+          image: 'pumpkin'
         }, {
           name: 'Grapes',
           value: 10,
-          image: '~/assets/images/hat.png'
+          image: 'hat'
         }, {
           name: 'Cherry',
           value: 16,
-          image: '~/assets/images/pot.png'
+          image: 'pot'
         }, {
           name: 'Bar',
           value: 32,
-          image: '~/assets/images/wild.png'
+          image: 'wild'
         }],
         reelIndex: 2,
         tile1Index: 0,

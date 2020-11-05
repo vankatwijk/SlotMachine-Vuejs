@@ -1,19 +1,12 @@
 <template>
 
-
     <GridLayout columns="*" rows="4*, 2*, 2*" backgroundColor="#3c495e" class="SlotMachine">
-        <Label text="0,0" row="0" col="0" backgroundColor="#43b883"/>
-        <Label text="0,1" row="0" col="1" backgroundColor="#1c6b48"/>
-        <Label text="1,0" row="1" col="0" backgroundColor="#289062"/>
-        <Label text="1,1" row="1" col="1" backgroundColor="#43b883"/>
 
 
         <StackLayout orientation="horizontal" row="0" col="1" class="SlotMachine-reels">
-            <StackLayout class="SlotMachine-shadow"></StackLayout>
-            <StackLayout class="SlotMachine-payline"></StackLayout>
-            <SlotReel ref="reel1" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
-            <SlotReel ref="reel2" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
-            <SlotReel ref="reel3" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
+            <SlotReel ref="reel1" ></SlotReel>
+            <SlotReel ref="reel2" ></SlotReel>
+            <SlotReel ref="reel3" ></SlotReel>
         </StackLayout>
 
         <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats">
