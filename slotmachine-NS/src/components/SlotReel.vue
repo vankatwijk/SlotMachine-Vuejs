@@ -1,35 +1,40 @@
 <template>
   <StackLayout ref="reel1" class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="33%" height="200">
-    <AbsoluteLayout  height="400" width="100%" :class="animateSpin===true?'Reel-inner move':'Reel-inner '" backgroundColor="red"> 
+    <AbsoluteLayout  height="350" width="100%" :class="animateSpin===true?'Reel-inner move':'Reel-inner '" backgroundColor="red"> 
 
       <!-- <StackLayout top="100" hight="2" width="100%" backgroundColor="purple">
         <Label text=""></label>
       </StackLayout> -->
       
-      <StackLayout top="-200">
+      <StackLayout top="-140">
         <Image 
         class="Reel-image" 
         :src="'res://'+reelTileData[tile1Index].image" 
+        height="70"
         /> 
         
         <Image 
         class="Reel-image"
         :src="'res://'+reelTileData[tile2Index].image" 
+        height="70"
         /> 
         
         <Image 
         class="Reel-image" 
         :src="'res://'+reelTileData[tile3Index].image" 
+        height="70"
         /> 
         
         <Image
         class="Reel-image" 
         :src="'res://'+reelTileData[tile4Index].image" 
+        height="70"
         /> 
 
         <Image 
         class="Reel-image"
         :src="'res://'+reelTileData[tile5Index].image" 
+        height="70"
         /> 
 
       </StackLayout>

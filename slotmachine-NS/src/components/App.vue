@@ -164,7 +164,7 @@ html, body {
 }
 .move{
   transition: margin-top 0.10s linear;
-  margin-top: 130;
+  margin-top: 100;
 }
 .Reel-image {
   width: 90;
