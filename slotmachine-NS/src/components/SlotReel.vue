@@ -179,7 +179,7 @@
 
           setTimeout(() => {
             this.animate()
-          }, 90);
+          }, 150);
 
         } else {
           this.$emit('stopped', this.reelTileData[this.reelIndex]);
@@ -189,15 +189,23 @@
         }
       },
       reIndex: function reIndex() {
-        var end = this.reelTileData.length - 1; //this.reelTileCount - 1
-        var index = this.reelIndex === 0 ? end : this.reelIndex - 1;
-        // const index = this.index === end ? 0 : this.index + 1
-        this.reelIndex = index;
-        this.tile1Index = index === 1 ? end : index === 0 ? end - 1 : index - 2;
-        this.tile2Index = index === 0 ? end : index - 1;
-        this.tile3Index = index;
-        this.tile4Index = index === end ? 0 : index + 1;
-        this.tile5Index = index === end - 1 ? 0 : index === end ? 1 : index + 2;
+        // var end = this.reelTileData.length - 1; //this.reelTileCount - 1
+        // var index = this.reelIndex === 0 ? end : this.reelIndex - 1;
+        // // const index = this.index === end ? 0 : this.index + 1
+        // this.reelIndex = index;
+        // this.tile1Index = index === 1 ? end : index === 0 ? end - 1 : index - 2;
+        // this.tile2Index = index === 0 ? end : index - 1;
+        // this.tile3Index = index;
+        // this.tile4Index = index === end ? 0 : index + 1;
+        // this.tile5Index = index === end - 1 ? 0 : index === end ? 1 : index + 2;
+
+
+        this.tile5Index = this.tile4Index;
+        this.tile4Index = this.tile3Index;
+        this.tile3Index = this.tile2Index;
+        this.tile2Index = this.tile1Index;
+        this.tile1Index = this.tile5Index;
+
       },
       lock: function lock() {
         if (this.canlock) {

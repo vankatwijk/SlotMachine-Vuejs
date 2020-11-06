@@ -163,7 +163,7 @@ html, body {
 .Reel-inner {
 }
 .move{
-  transition: margin-top 0.10s linear;
+  transition: margin-top 1.00s linear;
   margin-top: 100;
 }
 .Reel-image {
