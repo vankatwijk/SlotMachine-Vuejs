@@ -67,15 +67,12 @@ html, body {
   padding: 10px 0;
 }
 .SlotMachine-coin {
-  width: 6px;
-  height: 38px;
-  background: rgb(20, 20, 20);
+  width: 6;
+  height: 100;
+  background: gray;
   border: 3px solid rgb(40, 40, 40);
   border-radius: 6px;
   margin: 12px 10px 0 10px;
-}
-.SlotMachine-coin:hover {
-  background: rgb(140, 140, 140);
 }
 .SlotMachine-stat {
   margin-right: 10px;
