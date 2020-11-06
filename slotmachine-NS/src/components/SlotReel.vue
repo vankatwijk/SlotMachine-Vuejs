@@ -1,7 +1,12 @@
 <template>
-  <StackLayout class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="30%">
-    <StackLayout class="Reel-inner" backgroundColor="red"> 
+  <StackLayout ref="reel1" class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="33%" height="200">
+    <AbsoluteLayout  height="400" width="100%" :class="animateSpin===true?'Reel-inner move':'Reel-inner '" backgroundColor="red"> 
+
+      <!-- <StackLayout top="100" hight="2" width="100%" backgroundColor="purple">
+        <Label text=""></label>
+      </StackLayout> -->
       
+      <StackLayout top="-200">
         <Image 
         class="Reel-image" 
         :src="'res://'+reelTileData[tile1Index].image" 
@@ -26,14 +31,17 @@
         class="Reel-image"
         :src="'res://'+reelTileData[tile5Index].image" 
         /> 
-    </StackLayout>
+
+      </StackLayout>
+
+    </AbsoluteLayout>
   </StackLayout>
 </template>
 
 <script>
   export default {
     name: 'SlotReel',
-    props: ['value', 'canlock'],
+    props: ['value', 'canlock','spinReel'],
     //freesound.org
     data: function data() {
       return {
@@ -72,7 +80,8 @@
         tile3Index: 2,
         tile4Index: 3,
         tile5Index: 4,
-        locked: false
+        locked: false,
+        animateSpin:false
       };
     },
     beforeMount: function beforeMount() {
@@ -129,7 +138,7 @@
       console.log('[suffle]',this.reelTileData)
     },
     mounted: function mounted() {
-      this.$el.addEventListener("transitionend", this.animateEnd);
+      //this.$el.addEventListener("transitionend", this.animateEnd);
     },
     computed: {},
     methods: {
@@ -148,14 +157,25 @@
         }
       },
       animate: function animate() {
-        this.$el.classList.add('move');
+        //this.$el.classList.add('move');
+        this.animateSpin = true;
+        console.log('animate end')
+          setTimeout(() => {
+            this.animateEnd()
+          }, 10);
       },
       animateEnd: function animateEnd() {
-        this.$el.classList.remove('move');
+        //this.$el.classList.remove('move');
+        this.animateSpin = false;
         this.reIndex();
         this.momentum = this.momentum - 1;
         if (this.momentum > 0) {
-          setTimeout(this.animate, 10);
+          console.log('animate start')
+
+          setTimeout(() => {
+            this.animate()
+          }, 90);
+
         } else {
           this.$emit('stopped', this.reelTileData[this.reelIndex]);
           // this.audio.spinEnd.play();
@@ -180,7 +200,18 @@
           // this.audio.lock.play();
         }
       }
-    }
+    },
+    watch: {
+      spinReel(newVal){
+          console.log('inside slotreel',newVal);
+        if(newVal){
+          this.animateSpin = false;
+          this.run();
+        }else{
+          this.animateSpin = false;
+        }
+      }
+    },
 
 
 

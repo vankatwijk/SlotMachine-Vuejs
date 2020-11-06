@@ -3,10 +3,10 @@
     <GridLayout columns="*" rows="4*, 2*, 2*" backgroundColor="#3c495e" class="SlotMachine">
 
 
-        <StackLayout orientation="horizontal" row="0" col="1" class="SlotMachine-reels">
-            <SlotReel ref="reel1" ></SlotReel>
-            <SlotReel ref="reel2" ></SlotReel>
-            <SlotReel ref="reel3" ></SlotReel>
+        <StackLayout orientation="horizontal" row="0" col="1" class="SlotMachine-reels" backgroundColor="red">
+            <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+            <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+            <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
         </StackLayout>
 
         <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats">
@@ -22,7 +22,7 @@
             </StackLayout>
         </StackLayout>
         <StackLayout orientation="horizontal" row="2" col="0" class="SlotMachine-actions"> 
-            <button class="SlotMachine-button is-spin" width="70" v-on:mousedown="spin()">Play</button>
+            <button class="SlotMachine-button is-spin" width="70" @tap="spin()">Play</button>
             <button class="SlotMachine-button is-win" width="70" :class="{'has-win':win}" :tap="takeWin()">Take Win </button>
         </StackLayout>
 
@@ -45,14 +45,15 @@
                 spend: 6,
                 credits: 6,
                 win: 0,
-                resultData: false,
+                resultData: [],
                 canlock: true,
                 waslocked: false,
                 audio: {
                     // win: new Audio('https://freesound.org/data/previews/387/387232_1474204-lq.mp3'),
                     // insertCoin: new Audio('https://freesound.org/data/previews/276/276091_5123851-lq.mp3'),
                     // bigwin: new Audio('https://freesound.org/data/previews/270/270319_5123851-lq.mp3')
-                }
+                },
+                spinReel:false
             };
         },
         beforeMount: function beforeMount() {},
@@ -61,36 +62,42 @@
         },
         computed: {},
         methods: {
-            keydown: function keydown(e) {
-                console.log(e.which);
-                var key = {
-                    one: 49,
-                    two: 50,
-                    three: 51,
-                    space: 32
-                };
-                if (e.which === key.one) {
-                    this.$refs.reel1.lock();
-                    e.preventDefault();
-                } else if (e.which === key.two) {
-                    this.$refs.reel2.lock();
-                    e.preventDefault();
-                } else if (e.which === key.three) {
-                    this.$refs.reel3.lock();
-                    e.preventDefault();
-                } else if (e.which === key.space) {
-                    this.spin();
-                    e.preventDefault();
-                }
-            },
+            // keydown: function keydown(e) {
+            //     console.log(e.which);
+            //     var key = {
+            //         one: 49,
+            //         two: 50,
+            //         three: 51,
+            //         space: 32
+            //     };
+            //     if (e.which === key.one) {
+            //         this.$refs.reel1.lock();
+            //         e.preventDefault();
+            //     } else if (e.which === key.two) {
+            //         this.$refs.reel2.lock();
+            //         e.preventDefault();
+            //     } else if (e.which === key.three) {
+            //         this.$refs.reel3.lock();
+            //         e.preventDefault();
+            //     } else if (e.which === key.space) {
+            //         this.spin();
+            //         e.preventDefault();
+            //     }
+            // },
             spin: function spin() {
-                if (this.credits > 0 && !this.resultData) {
+                    console.log('spin',this.spinReel);
+                if (this.spinReel) {
+                    console.log('ifspin',this.spinReel);
                     this.resultData = [];
                     this.credits = this.credits - 0.5;
-                    this.$refs.reel1.run();
-                    this.$refs.reel2.run();
-                    this.$refs.reel3.run();
+                    // console.log('----+_+_+_+_+_+_+_++_+_+_+-----')
+                    // console.log(this.$refs)
+                    // this.$refs.reel1.nativeView.run();
+                    // this.$refs.reel2.nativeView.run();
+                    // this.$refs.reel3.nativeView.run();
                 }
+                    console.log('spinReel',this.spinReel);
+                    this.spinReel = !this.spinReel;
             },
             insertCoin: function insertCoin() {
                 // this.audio.insertCoin.currentTime = 0;
@@ -105,9 +112,11 @@
                 }
             },
             reelStopped: function reelStopped(resultData, wasLocked) {
+                this.spinReel=false;
                 if (wasLocked) this.waslocked = wasLocked;
 
-                this.resultData.push(resultData);
+                var temparray = [];
+                temparray.push(resultData);
                 if (this.resultData.length === 3) {
                     this.checkWin(this.resultData);
                     if (this.waslocked) {
@@ -117,6 +126,8 @@
                         this.canlock = true;
                     }
                 }
+
+                this.resultData = temparray;
             },
 
             checkWin: function checkWin() {
