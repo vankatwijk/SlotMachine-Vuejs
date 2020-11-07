@@ -3,11 +3,11 @@
     <GridLayout columns="*" rows="4*, 2*, 2*" backgroundColor="#3c495e" class="SlotMachine">
 
 
-        <StackLayout orientation="horizontal" row="0" col="1" class="SlotMachine-reels" backgroundColor="red">
-            <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
-            <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
-            <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
-        </StackLayout>
+        <GridLayout columns="*,auto,auto,auto,*" rows="*,auto,*" row="0" col="1" class="SlotMachine-reels" backgroundColor="yellow">
+            <SlotReel col="1" row="1" :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+            <SlotReel col="2" row="1" :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+            <SlotReel col="3" row="1" :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+        </GridLayout>
 
         <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats">
             <button class="SlotMachine-coin" width="30" v-on:tap="insertCoin()"></button>

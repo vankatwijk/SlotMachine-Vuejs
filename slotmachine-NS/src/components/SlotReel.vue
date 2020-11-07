@@ -1,6 +1,6 @@
 <template>
-  <StackLayout ref="reel1" class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="33%" height="200">
-    <AbsoluteLayout  height="350" width="100%" :class="animateSpin===true?'Reel-inner move':'Reel-inner '" backgroundColor="red"> 
+  <StackLayout ref="reel1" class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="25%" height="200">
+    <AbsoluteLayout  height="350" width="100%" :class="animateSpin===true?'Reel-inner move':'Reel-inner '" backgroundColor="white"> 
 
       <!-- <StackLayout top="100" hight="2" width="100%" backgroundColor="purple">
         <Label text=""></label>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+  const { TNSPlayer } = require('nativescript-audio');
+
   export default {
     name: 'SlotReel',
     props: ['value', 'canlock','spinReel'],
@@ -52,9 +54,9 @@
       return {
         momentum: null,
         audio: {
-          // spin: new Audio('/sounds/spin.mp3'),
-          // spinEnd: new Audio('/sounds/spin_end.mp3'),
-          // lock: new Audio('/sounds/lock.mp3')
+          // spin: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),//new Audio('/sounds/spin.mp3'),
+          // spinEnd: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),// new Audio('/sounds/spin_end.mp3'),
+          // lock: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'})// new Audio('/sounds/lock.mp3')
         },
         reelTileCount: 15,
         reelTileData: null,
@@ -92,6 +94,8 @@
     beforeMount: function beforeMount() {
       // Build up the reelTileData array with random tiles  
       var frs = [];
+
+
       //var count = this.reelTileCount;
       // this.audio.spin.volume = 0.3;
       // this.audio.spinEnd.volume = 0.8;
@@ -155,6 +159,26 @@
           var momentum = Math.floor(Math.random() * (max - min + 1) + min);
           this.momentum = momentum;
           // this.audio.spin.play();
+
+          this._player = new TNSPlayer();
+          const playerOptions = {
+            audioFile: "https://www.w3schools.com/html/horse.mp3",
+            loop: false,
+            autoplay: false,
+          };
+
+          this._player
+          .initFromUrl(playerOptions)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log("something went wrong...", err);
+          });
+
+          this._player.play();
+
+
           this.animate();
         } else {
           this.locked = false;
@@ -165,9 +189,9 @@
         //this.$el.classList.add('move');
         this.animateSpin = true;
         console.log('animate end')
-          setTimeout(() => {
-            this.animateEnd()
-          }, 10);
+        setTimeout(() => {
+          this.animateEnd()
+        }, 10);
       },
       animateEnd: function animateEnd() {
         //this.$el.classList.remove('move');
@@ -179,7 +203,7 @@
 
           setTimeout(() => {
             this.animate()
-          }, 150);
+          }, 120);
 
         } else {
           this.$emit('stopped', this.reelTileData[this.reelIndex]);
