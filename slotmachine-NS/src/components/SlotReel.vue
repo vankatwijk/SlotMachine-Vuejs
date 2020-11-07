@@ -88,7 +88,8 @@
         tile4Index: 3,
         tile5Index: 4,
         locked: false,
-        animateSpin:false
+        animateSpin:false,
+        _player:null
       };
     },
     beforeMount: function beforeMount() {
@@ -148,19 +149,9 @@
     },
     mounted: function mounted() {
       //this.$el.addEventListener("transitionend", this.animateEnd);
-    },
-    computed: {},
-    methods: {
-      run: function run() {
-        console.log('run');
-        if (!this.locked) {
-          var min = 8;
-          var max = 28;
-          var momentum = Math.floor(Math.random() * (max - min + 1) + min);
-          this.momentum = momentum;
-          // this.audio.spin.play();
 
           this._player = new TNSPlayer();
+          this._player.debug = true;
           const playerOptions = {
             audioFile: "https://www.w3schools.com/html/horse.mp3",
             loop: false,
@@ -175,6 +166,18 @@
           .catch((err) => {
             console.log("something went wrong...", err);
           });
+    },
+    computed: {},
+    methods: {
+      run: function run() {
+        console.log('run');
+        if (!this.locked) {
+          var min = 8;
+          var max = 28;
+          var momentum = Math.floor(Math.random() * (max - min + 1) + min);
+          this.momentum = momentum;
+          // this.audio.spin.play();
+
 
           this._player.play();
 
