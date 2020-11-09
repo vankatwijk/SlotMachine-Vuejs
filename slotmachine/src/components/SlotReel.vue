@@ -1,31 +1,32 @@
 <template>
-  <div class="Reel" v-bind:class="{'is-locked':locked}" v-on:mousedown="lock()">
-    <div class="Reel-inner"> 
-      
+  <div class="Reel col xs4 sm4 md4 lg4 xl4" v-bind:class="{'is-locked':locked}" v-on:mousedown="lock()">
+    <div class="Reel-inner row"> 
+      <div class="col xs12 sm12 md12 lg12 xl12">
         <img 
-        class="Reel-image" 
+        class="Reel-image responsive-img img-responsive" 
         :src="reelTileData[tile1Index].image" 
         /> 
         
         <img 
-        class="Reel-image"
+        class="Reel-image responsive-img img-responsive"
         :src="reelTileData[tile2Index].image" 
         /> 
         
         <img 
-        class="Reel-image" 
+        class="Reel-image responsive-img img-responsive" 
         :src="reelTileData[tile3Index].image" 
         /> 
         
         <img
-        class="Reel-image" 
+        class="Reel-image responsive-img img-responsive" 
         :src="reelTileData[tile4Index].image" 
         /> 
 
         <img 
-        class="Reel-image"
+        class="Reel-image responsive-img img-responsive"
         :src="reelTileData[tile5Index].image" 
         /> 
+      </div>
     </div>
   </div>
 </template>

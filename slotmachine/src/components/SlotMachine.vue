@@ -1,27 +1,46 @@
 <template>
     <div class="SlotMachine">
-        <div class="SlotMachine-reels">
-            <div class="SlotMachine-shadow"></div>
-            <div class="SlotMachine-payline"></div>
-            <SlotReel ref="reel1" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
-            <SlotReel ref="reel2" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
-            <SlotReel ref="reel3" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
-        </div>
-        <div class="SlotMachine-stats">
-            <div class="SlotMachine-coin" v-on:mousedown="insertCoin()"></div>
-            <div class="SlotMachine-stat is-credit">
-                <div class="SlotMachine-statTitle">Credits</div>
-                <div class="SlotMachine-statValue">{{credits.toFixed(2)}}</div>
-                <div class="SlotMachine-statSub">spend {{spend.toFixed(2)}}</div>
+        <div class="container">
+            <div class="logo"><img src="img/ui/logo.png" class="responsive-img img-responsive" /></div>
+            <div class="SlotMachine-reels slot-reels-container row">
+                <div class="SlotMachine-shadow"></div>
+                <div class="SlotMachine-payline col-payline"></div>
+                <SlotReel ref="reel1" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
+                <SlotReel ref="reel2" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
+                <SlotReel ref="reel3" :canlock="canlock" v-on:stopped="reelStopped"></SlotReel>
             </div>
-            <div class="SlotMachine-stat is-win">
-                <div class="SlotMachine-statTitle">Won</div>
-                <div class="SlotMachine-statValue">{{win.toFixed(2)}}</div>
+            <div class="area-hero">
+                <img src="img/ui/pers.png" class="responsive-img" />
             </div>
-        </div>
-        <div class="SlotMachine-actions"> <button class="SlotMachine-button is-spin"
-                v-on:mousedown="spin()">Play</button>
-            <div class="SlotMachine-button is-win" v-bind:class="{'has-win':win}" v-on:mousedown="takeWin()">Take Win
+            <div class="row toolbar-container bottom">
+                <div class="SlotMachine-stats col col-left col-stats xs8 s7 m7 l8 xl8">
+                    <div class="container">
+                    <div class="row">
+                        <div class="col xs4 s4 m4 l4 xl4">
+                            <div class="SlotMachine-coin btn-buy btn-coin ma-2" v-on:mousedown="insertCoin()"></div>
+                        </div>
+                        <div class="col xs4 s4 m4 l4 xl4 ">
+                            <div class="SlotMachine-stat is-credit area-credits ma-2">
+                                <div class="SlotMachine-statTitle area-title">Credits</div>
+                                <div class="SlotMachine-statValue area-value">{{credits.toFixed(2)}}</div>
+                                <div class="SlotMachine-statSub area-value-sub">spend {{spend.toFixed(2)}}</div>
+                            </div>
+                        </div>
+                        <div class="col xs4 s4 m4 l4 xl4">
+                            <div class="SlotMachine-stat is-win area-win ma-2">
+                                <div class="SlotMachine-statTitle area-title">Won</div>
+                                <div class="SlotMachine-statValue area-value">{{win.toFixed(2)}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="SlotMachine-actions col col-right col-buttons xs4 s5 m5 l4 xl4"> 
+                    <div class="SlotMachine-button is-win btn-is-win" v-bind:class="{'has-win':win}" v-on:mousedown="takeWin()">Take Win
+                    </div>
+                    <button class="SlotMachine-button is-spin btn-spin"
+                    v-on:mousedown="spin()"></button>
+                </div>
             </div>
         </div>
     </div>
