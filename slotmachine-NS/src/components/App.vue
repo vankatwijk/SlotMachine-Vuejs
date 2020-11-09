@@ -1,7 +1,7 @@
 <template>
 
     <Page>
-        <ActionBar title="Slooots"/>
+        <ActionBar title="Slooots" backgroundColor="yellow"/>
         <GridLayout columns="*" rows="*">
             <SlotMachine />
         </GridLayout>
