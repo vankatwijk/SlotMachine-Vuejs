@@ -66,7 +66,7 @@ html, body {
 
 
 .SlotMachine-stats {
-  padding: 10px 0;
+  padding: 25 0;
 }
 .SlotMachine-coin {
   width: 6;
