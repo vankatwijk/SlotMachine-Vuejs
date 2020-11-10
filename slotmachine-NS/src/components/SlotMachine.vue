@@ -28,7 +28,7 @@
                 <Label class="SlotMachine-statValue" :text="win.toFixed(2)"/>
             </StackLayout>
 
-            <button col="3" row="0" class="circleButton" :class="{'has-win':win}" :tap="takeWin()">Take</button>
+            <button col="3" row="0" class="circleButton" :class="{'has-win':win}" @tap="takeWin()">Take</button>
 
         </GridLayout>
 
@@ -95,19 +95,19 @@
             //     }
             // },
             spin: function spin() {
-                    console.log('spin',this.spinReel);
-                if (this.spinReel) {
+                console.log('spin',this.spinReel);
+                if (!this.spinReel && this.credits > 0) {
                     console.log('ifspin',this.spinReel);
                     this.resultData = [];
-                    this.credits = this.credits - 0.5;
+                    this.credits = (this.credits - 0.5);
                     // console.log('----+_+_+_+_+_+_+_++_+_+_+-----')
                     // console.log(this.$refs)
                     // this.$refs.reel1.nativeView.run();
                     // this.$refs.reel2.nativeView.run();
                     // this.$refs.reel3.nativeView.run();
-                }
                     console.log('spinReel',this.spinReel);
                     this.spinReel = !this.spinReel;
+                }
             },
             insertCoin: function insertCoin() {
                 // this.audio.insertCoin.currentTime = 0;
@@ -125,8 +125,9 @@
                 this.spinReel=false;
                 if (wasLocked) this.waslocked = wasLocked;
 
-                var temparray = [];
-                temparray.push(resultData);
+                //var temparray = [];
+                this.resultData.push(resultData);
+
                 if (this.resultData.length === 3) {
                     this.checkWin(this.resultData);
                     if (this.waslocked) {
@@ -135,9 +136,10 @@
                     } else {
                         this.canlock = true;
                     }
+                    this.resultData = []
                 }
 
-                this.resultData = temparray;
+                //this.resultData = temparray;
             },
 
             checkWin: function checkWin() {
@@ -160,11 +162,11 @@
                         var bar3 = v3.name === 'Bar';
                         if (bar1 && bar2 || bar1 && bar3 || bar2 && bar3) {
                             // this.audio.bigwin.play()
-                            // this.win += 16
+                            this.win += 16
                             // this.waslocked = true // prevent lock after an unlocked win
                         } else if (bar1 || bar2 || bar3) {
                             // this.audio.win.play()
-                            // this.win += 4
+                            this.win += 4
                             // this.waslocked = true // prevent lock after an unlocked win
                         } else {
                             // Lose : (
