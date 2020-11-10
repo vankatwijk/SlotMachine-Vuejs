@@ -80,22 +80,23 @@ html, body {
   margin-right: 10px;
 }
 .SlotMachine-statTitle {
-  font-size: 12px;
-  color: rgb(60, 60, 60);
+  font-size: 12;
+  color: white;
 }
 .SlotMachine-statValue {
-  padding: 5px 10px;
-  background: rgba(255, 0, 0, .15);
-  border-radius: 2px;
-  border: 1px solid rgb(0, 0, 0);
-  font-size: 25px;
+  font-size: 25;
   text-align: right;
-  color: rgba(255, 0, 0, .8);
+  color: black;
   text-shadow: 0 0 4px rgba(255, 0, 0, .5);
+
+  background-color: white;
+  border-color: red;
+  border-width: 6;
+  border-radius: 6;
 }
 .SlotMachine-statSub {
-  font-size: 9px;
-  color: rgb(50, 50, 50);
+  font-size: 9;
+  color: white;
   text-align: right;
 }
 
@@ -152,16 +153,15 @@ html, body {
 .SlotMachine-button.is-win.has-win {
   background: rgba(255, 0, 0, .99);
 }
-.SlotMachine-button.is-win:hover {
-  background: rgba(255, 0, 0, .65);
+.circleButton{
+
+  border-radius: 80;
+  background-color: yellowgreen;
+  width: 70;
+  height: 70;
+  font-size: 14;
+  color:white;
 }
-.SlotMachine-button.is-win:active {
-  background: rgba(255, 0, 0, .7);
-}
-
-
-
-
 
 
 .Reel {

@@ -13,19 +13,24 @@
 
         </GridLayout>
 
-        <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats background">
-            <button class="SlotMachine-coin" width="30" v-on:tap="insertCoin()"></button>
-            <StackLayout width="100" class="SlotMachine-stat is-credit">
+        <GridLayout columns="*,auto,auto,*" rows="*" row="1" col="0" class="SlotMachine-stats background">
+
+            <button col="0" row="0" class="circleButton" v-on:tap="insertCoin()">Buy</button>
+
+            <StackLayout col="1" row="0" width="100" class="SlotMachine-stat is-credit">
                 <Label class="SlotMachine-statTitle" text="Credits"/>
-                <TextField class="SlotMachine-statValue" isEnabled="false" :text="credits.toFixed(2)"/>
+                <Label class="SlotMachine-statValue" :text="credits.toFixed(2)"/>
                 <Label class="SlotMachine-statSub" :text="'spend '+spend.toFixed(2)"/>
             </StackLayout>
-            <StackLayout width="100" class="SlotMachine-stat is-win">
+
+            <StackLayout col="2" row="0" width="100" class="SlotMachine-stat is-win">
                 <Label class="SlotMachine-statTitle" text="Won"/>
-                <TextField class="SlotMachine-statValue" isEnabled="false" :text="win.toFixed(2)"/>
+                <Label class="SlotMachine-statValue" :text="win.toFixed(2)"/>
             </StackLayout>
-            <button class="SlotMachine-button is-win" width="70" :class="{'has-win':win}" :tap="takeWin()">Take Win </button>
-        </StackLayout>
+
+            <button col="3" row="0" class="circleButton" :class="{'has-win':win}" :tap="takeWin()">Take</button>
+
+        </GridLayout>
 
         <GridLayout rows="auto" columns="*" row="2" col="0" class="SlotMachine-actions background"> 
             <button row="0" horizontalAlignment="center" class="SlotMachine-button is-spin" @tap="spin()">Spin</button>
