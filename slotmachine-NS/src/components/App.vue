@@ -1,7 +1,7 @@
 <template>
 
     <Page>
-        <ActionBar title="Slooots" backgroundColor="yellow"/>
+        <ActionBar title="Slooots" backgroundColor="orangered"/>
         <GridLayout columns="*" rows="*">
             <SlotMachine />
         </GridLayout>
@@ -30,6 +30,9 @@ html, body {
   width: 100vw;
   height: 100vh;
 }
+.background{
+  background-color: orangered;
+}
 .SlotMachine {
   border-radius: 5px;
 }
@@ -47,6 +50,12 @@ html, body {
   width: 100%;
   height: 100%;
 }
+.reelContainer{
+  border-color: red;
+  border-width: 10;
+  border-radius: 10;
+}
+
 .SlotMachine-payline {
   position: absolute;
   top: 104.994px;
@@ -57,13 +66,6 @@ html, body {
 
 
 .SlotMachine-stats {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  background: #000;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   padding: 10px 0;
 }
 .SlotMachine-coin {
@@ -101,7 +103,6 @@ html, body {
 
 .SlotMachine-actions {
   padding: 20px 10px;
-  background: rgb(20, 20, 20);
   border-radius: 0 0 4px 4px;
 }
 .SlotMachine-button {

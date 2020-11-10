@@ -1,15 +1,19 @@
 <template>
 
-    <GridLayout columns="*" rows="4*, 2*, 2*" backgroundColor="#3c495e" class="SlotMachine">
+    <GridLayout columns="*" rows="4*, 2*, 2*" class="SlotMachine">
 
 
-        <GridLayout columns="*,auto,auto,auto,*" rows="*,auto,*" row="0" col="1" class="SlotMachine-reels" backgroundColor="yellow">
-            <SlotReel col="1" row="1" :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
-            <SlotReel col="2" row="1" :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
-            <SlotReel col="3" row="1" :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+        <GridLayout columns="*,auto,*" rows="*,auto,*" row="0" col="1" class="SlotMachine-reels background" >
+
+            <StackLayout orientation="horizontal" col="1" row="1" class="reelContainer">
+                <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+                <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+                <SlotReel :spinReel="spinReel" @stopped="reelStopped"></SlotReel>
+            </StackLayout>
+
         </GridLayout>
 
-        <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats">
+        <StackLayout orientation="horizontal" row="1" col="0" class="SlotMachine-stats background">
             <button class="SlotMachine-coin" width="30" v-on:tap="insertCoin()"></button>
             <StackLayout width="100" class="SlotMachine-stat is-credit">
                 <Label class="SlotMachine-statTitle" text="Credits"/>
@@ -21,7 +25,7 @@
                 <TextField class="SlotMachine-statValue" isEnabled="false" :text="win.toFixed(2)"/>
             </StackLayout>
         </StackLayout>
-        <StackLayout orientation="horizontal" row="2" col="0" class="SlotMachine-actions"> 
+        <StackLayout orientation="horizontal" row="2" col="0" class="SlotMachine-actions background"> 
             <button class="SlotMachine-button is-spin" width="70" @tap="spin()">Play</button>
             <button class="SlotMachine-button is-win" width="70" :class="{'has-win':win}" :tap="takeWin()">Take Win </button>
         </StackLayout>
