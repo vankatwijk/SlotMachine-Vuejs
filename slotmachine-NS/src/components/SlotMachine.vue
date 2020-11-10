@@ -24,11 +24,12 @@
                 <Label class="SlotMachine-statTitle" text="Won"/>
                 <TextField class="SlotMachine-statValue" isEnabled="false" :text="win.toFixed(2)"/>
             </StackLayout>
-        </StackLayout>
-        <StackLayout orientation="horizontal" row="2" col="0" class="SlotMachine-actions background"> 
-            <button class="SlotMachine-button is-spin" width="70" @tap="spin()">Play</button>
             <button class="SlotMachine-button is-win" width="70" :class="{'has-win':win}" :tap="takeWin()">Take Win </button>
         </StackLayout>
+
+        <GridLayout rows="auto" columns="*" row="2" col="0" class="SlotMachine-actions background"> 
+            <button row="0" horizontalAlignment="center" class="SlotMachine-button is-spin" @tap="spin()">Spin</button>
+        </GridLayout>
 
 
 

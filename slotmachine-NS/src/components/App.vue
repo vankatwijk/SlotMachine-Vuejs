@@ -120,15 +120,30 @@ html, body {
 }
 
 .SlotMachine-button.is-spin {
-  background: rgba(0, 255, 0, .4);
-  border: 1px solid rgba(0, 255, 0, .4);
+  /* #4aaa4e; */
+  background-color: #368a3a;
+  border-color: #368a3a;
+  border-width: 10;
+  border-radius: 10;
+
+	color: #FFF;
+	text-decoration: none;
+	display: block;
+	padding: 4px;
+	border-radius: 10px;
+	margin: 50px auto;
+	width: 200;
+  font-size: 18;
+	text-align: center;
+	/*Styles for transition*/
+	transition: all .2s ease;
+	/*Styles for 3d effect*/
+	box-shadow: 0px 9px 0px #065781, 0px 9px 25px rgba(0,0,0,.7);
+  elevation:5;
+
+
 }
-.SlotMachine-button.is-spin:hover {
-  background: rgba(0, 255, 0, .43);
-}
-.SlotMachine-button.is-spin:active {
-  background: rgba(0, 255, 0, .46);
-}
+
 
 .SlotMachine-button.is-win {
   background: rgba(255, 0, 0, .4);
