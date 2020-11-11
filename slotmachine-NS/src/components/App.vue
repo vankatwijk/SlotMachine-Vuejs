@@ -51,6 +51,8 @@ html, body {
   height: 100%;
 }
 .reelContainer{
+
+  background-color: white;
   border-color: red;
   border-width: 10;
   border-radius: 10;
