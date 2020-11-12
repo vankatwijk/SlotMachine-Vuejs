@@ -1,5 +1,5 @@
 <template>
-  <StackLayout ref="reel1" class="Reel" :class="{'is-locked':locked}" :tap="lock()" width="25%" height="200">
+  <StackLayout ref="reel1" class="Reel" :class="{'is-locked':locked}" @tap="lock()" width="25%" height="200">
     <AbsoluteLayout  height="350" width="100%" :class="animateSpin===true?'Reel-inner move':'Reel-inner '" backgroundColor="white"> 
 
       <!-- <StackLayout top="100" hight="2" width="100%" backgroundColor="purple">
@@ -53,11 +53,13 @@
     data: function data() {
       return {
         momentum: null,
-        audio: {
-          // spin: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),//new Audio('/sounds/spin.mp3'),
-          // spinEnd: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),// new Audio('/sounds/spin_end.mp3'),
-          // lock: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'})// new Audio('/sounds/lock.mp3')
-        },
+        // spin: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),//new Audio('/sounds/spin.mp3'),
+        // spinEnd: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),// new Audio('/sounds/spin_end.mp3'),
+        // lock: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'})// new Audio('/sounds/lock.mp3')
+        audioSpin: null,
+        audioSpinEnd: null,
+        audioLock: null,
+
         reelTileCount: 15,
         reelTileData: null,
         reelSourceData: [{
@@ -89,7 +91,6 @@
         tile5Index: 4,
         locked: false,
         animateSpin:false,
-        _player:null
       };
     },
     beforeMount: function beforeMount() {
@@ -150,22 +151,33 @@
     mounted: function mounted() {
       //this.$el.addEventListener("transitionend", this.animateEnd);
 
-          this._player = new TNSPlayer();
-          this._player.debug = true;
-          const playerOptions = {
+
+        //sound functionality--------------------------------------
+        //spin sounds
+          this.audioSpin = new TNSPlayer();
+          this.audioSpin.debug = true;
+          this.audioSpin.initFromUrl({
             audioFile: "https://www.w3schools.com/html/horse.mp3",
             loop: false,
             autoplay: false,
-          };
-
-          this._player
-          .initFromUrl(playerOptions)
-          .then((res) => {
-            console.log(res);
           })
-          .catch((err) => {
-            console.log("something went wrong...", err);
-          });
+        //spinEnd sounds
+          this.audioSpinEnd = new TNSPlayer();
+          this.audioSpinEnd.debug = true;
+          this.audioSpinEnd.initFromUrl({
+            audioFile: "https://www.w3schools.com/html/horse.mp3",
+            loop: false,
+            autoplay: false,
+          })
+        //lock sounds
+          this.audioLock = new TNSPlayer();
+          this.audioLock.debug = true;
+          this.audioLock.initFromUrl({
+            audioFile: "https://www.w3schools.com/html/horse.mp3",
+            loop: false,
+            autoplay: false,
+          })
+
     },
     computed: {},
     methods: {
@@ -179,7 +191,7 @@
           // this.audio.spin.play();
 
 
-          this._player.play();
+          this.audioSpin.play();
 
 
           this.animate();
@@ -216,28 +228,29 @@
         }
       },
       reIndex: function reIndex() {
-        // var end = this.reelTileData.length - 1; //this.reelTileCount - 1
-        // var index = this.reelIndex === 0 ? end : this.reelIndex - 1;
-        // // const index = this.index === end ? 0 : this.index + 1
-        // this.reelIndex = index;
-        // this.tile1Index = index === 1 ? end : index === 0 ? end - 1 : index - 2;
-        // this.tile2Index = index === 0 ? end : index - 1;
-        // this.tile3Index = index;
-        // this.tile4Index = index === end ? 0 : index + 1;
-        // this.tile5Index = index === end - 1 ? 0 : index === end ? 1 : index + 2;
+        var end = this.reelTileData.length - 1; //this.reelTileCount - 1
+        var index = this.reelIndex === 0 ? end : this.reelIndex - 1;
+        // const index = this.index === end ? 0 : this.index + 1
+        this.reelIndex = index;
+        this.tile1Index = index === 1 ? end : index === 0 ? end - 1 : index - 2;
+        this.tile2Index = index === 0 ? end : index - 1;
+        this.tile3Index = index;
+        this.tile4Index = index === end ? 0 : index + 1;
+        this.tile5Index = index === end - 1 ? 0 : index === end ? 1 : index + 2;
 
 
-        this.tile5Index = this.tile4Index;
-        this.tile4Index = this.tile3Index;
-        this.tile3Index = this.tile2Index;
-        this.tile2Index = this.tile1Index;
-        this.tile1Index = this.tile5Index;
+        // this.tile5Index = this.tile4Index;
+        // this.tile4Index = this.tile3Index;
+        // this.tile3Index = this.tile2Index;
+        // this.tile2Index = this.tile1Index;
+        // this.tile1Index = this.tile5Index;
 
       },
       lock: function lock() {
         if (this.canlock) {
           this.locked = !this.locked;
           // this.audio.lock.play();
+          this.audioLock.play();
         }
       }
     },
