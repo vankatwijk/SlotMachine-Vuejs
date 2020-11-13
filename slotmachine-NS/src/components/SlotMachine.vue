@@ -43,6 +43,7 @@
 </template>
 
 <script>
+    const { TNSPlayer } = require('nativescript-audio');
     import SlotReel from './SlotReel';
 
     export default {
@@ -69,7 +70,28 @@
         beforeMount() {},
         mounted() {
 
-
+        //sound functionality--------------------------------------
+        //spin sounds
+          this.audioWin = new TNSPlayer();
+          this.audioWin.initFromFile({
+            audioFile: "~/audio/win.mp3",
+            loop: false,
+            autoplay: false
+          })
+        //spinEnd sounds
+          this.audioInsertCoin = new TNSPlayer();
+          this.audioInsertCoin.initFromFile({
+            audioFile: "~/audio/insert_coin.mp3",
+            loop: false,
+            autoplay: false
+          })
+        //lock sounds
+          this.audioBigWin = new TNSPlayer();
+          this.audioBigWin.initFromFile({
+            audioFile: "~/audio/big_win.mp3",
+            loop: false,
+            autoplay: false
+          })
 
         },
         computed: {},
@@ -102,18 +124,13 @@
                     console.log('ifspin',this.spinReel);
                     this.resultData = [];
                     this.credits = (this.credits - 0.5);
-                    // console.log('----+_+_+_+_+_+_+_++_+_+_+-----')
-                    // console.log(this.$refs)
-                    // this.$refs.reel1.nativeView.run();
-                    // this.$refs.reel2.nativeView.run();
-                    // this.$refs.reel3.nativeView.run();
                     console.log('spinReel',this.spinReel);
                     this.spinReel = !this.spinReel;
                 }
             },
             insertCoin: function insertCoin() {
-                // this.audio.insertCoin.currentTime = 0;
-                // this.audio.insertCoin.play();
+                this.audioInsertCoin.seekTo(0);
+                this.audioInsertCoin.play();
                 this.credits += .5;
                 this.spend += .5;
             },
@@ -152,9 +169,9 @@
                     var v3 = this.resultData[2];
                     if (v1.name === v2.name && v2.name === v3.name) {
                         if (v1.value >= 10) {
-                            // this.audio.bigwin.play();
+                            this.audioBigWin.play();
                         } else {
-                            // this.audio.win.play();
+                            this.audioWin.play();
                         }
                         this.win += v1.value;
                         this.waslocked = true; // prevent lock after an unlocked win
@@ -163,13 +180,13 @@
                         var bar2 = v2.name === 'Bar';
                         var bar3 = v3.name === 'Bar';
                         if (bar1 && bar2 || bar1 && bar3 || bar2 && bar3) {
-                            // this.audio.bigwin.play()
+                            this.audioBigWin.play()
                             this.win += 16
-                            // this.waslocked = true // prevent lock after an unlocked win
+                            this.waslocked = true // prevent lock after an unlocked win
                         } else if (bar1 || bar2 || bar3) {
-                            // this.audio.win.play()
+                            this.audioWin.play()
                             this.win += 4
-                            // this.waslocked = true // prevent lock after an unlocked win
+                            this.waslocked = true // prevent lock after an unlocked win
                         } else {
                             // Lose : (
                         }

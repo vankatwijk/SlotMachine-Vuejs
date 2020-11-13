@@ -146,26 +146,26 @@
       this.reelTileData = frs;
       console.log('[suffle]',this.reelTileData)
     },
-    mounted: async function mounted() {
+    mounted() {
 
         //sound functionality--------------------------------------
         //spin sounds
           this.audioSpin = new TNSPlayer();
-          await this.audioSpin.initFromFile({
+          this.audioSpin.initFromFile({
             audioFile: "~/audio/spin.mp3",
             loop: false,
             autoplay: false
           })
         //spinEnd sounds
           this.audioSpinEnd = new TNSPlayer();
-          await this.audioSpinEnd.initFromFile({
+          this.audioSpinEnd.initFromFile({
             audioFile: "~/audio/spin_end.mp3",
             loop: false,
             autoplay: false
           })
         //lock sounds
           this.audioLock = new TNSPlayer();
-          await this.audioLock.initFromFile({
+          this.audioLock.initFromFile({
             audioFile: "~/audio/lock.mp3",
             loop: false,
             autoplay: false
@@ -216,7 +216,7 @@
 
           this.audioSpinEnd.play()
           this.audioSpin.pause();
-          this.audioSpin.currentTime = 0.3;
+          this.audioSpin.seekTo(0.3);
         }
       },
       reIndex: function reIndex() {
