@@ -58,17 +58,19 @@
                 resultData: [],
                 canlock: true,
                 waslocked: false,
-                audio: {
-                    // win: new Audio('https://freesound.org/data/previews/387/387232_1474204-lq.mp3'),
-                    // insertCoin: new Audio('https://freesound.org/data/previews/276/276091_5123851-lq.mp3'),
-                    // bigwin: new Audio('https://freesound.org/data/previews/270/270319_5123851-lq.mp3')
-                },
+
+                audioWin:null,
+                audioInsertCoin:null,
+                audioBigWin:null,
+
                 spinReel:false
             };
         },
-        beforeMount: function beforeMount() {},
-        mounted: function mounted() {
-            // window.addEventListener('keydown', this.keydown);
+        beforeMount() {},
+        mounted() {
+
+
+
         },
         computed: {},
         methods: {
@@ -94,7 +96,7 @@
             //         e.preventDefault();
             //     }
             // },
-            spin: function spin() {
+            spin() {
                 console.log('spin',this.spinReel);
                 if (!this.spinReel && this.credits > 0) {
                     console.log('ifspin',this.spinReel);

@@ -53,9 +53,7 @@
     data: function data() {
       return {
         momentum: null,
-        // spin: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),//new Audio('/sounds/spin.mp3'),
-        // spinEnd: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'}),// new Audio('/sounds/spin_end.mp3'),
-        // lock: new audio.TNSPlayer({audioFile: '/sounds/spin.mp3'})// new Audio('/sounds/lock.mp3')
+
         audioSpin: null,
         audioSpinEnd: null,
         audioLock: null,
@@ -149,50 +147,30 @@
       console.log('[suffle]',this.reelTileData)
     },
     mounted: async function mounted() {
-      //this.$el.addEventListener("transitionend", this.animateEnd);
-
 
         //sound functionality--------------------------------------
         //spin sounds
           this.audioSpin = new TNSPlayer();
-          this.audioSpin.debug = true;
-          // this.audioSpin.initFromFile({
-          //   audioFile: "~/sounds/spin.mp3",
-          //   loop: false,
-          //   autoplay: false,
-          // })
-
           await this.audioSpin.initFromFile({
             audioFile: "~/audio/spin.mp3",
             loop: false,
             autoplay: false
-          }).catch(() => {
-            //this.isPlaying = false;
-          });
+          })
+        //spinEnd sounds
+          this.audioSpinEnd = new TNSPlayer();
+          await this.audioSpinEnd.initFromFile({
+            audioFile: "~/audio/spin_end.mp3",
+            loop: false,
+            autoplay: false
+          })
+        //lock sounds
+          this.audioLock = new TNSPlayer();
+          await this.audioLock.initFromFile({
+            audioFile: "~/audio/lock.mp3",
+            loop: false,
+            autoplay: false
+          })
 
-          //this.isPlaying = true;
-          //this.audioTrackDuration = await this._player.getAudioTrackDuration();
-          // start audio duration tracking
-          // this._startDurationTracking(this.audioTrackDuration);
-          // this._startVolumeTracking();
-
-
-        // //spinEnd sounds
-        //   this.audioSpinEnd = new TNSPlayer();
-        //   this.audioSpinEnd.debug = true;
-        //   this.audioSpinEnd.initFromUrl({
-        //     audioFile: "https://www.w3schools.com/html/horse.mp3",
-        //     loop: false,
-        //     autoplay: false,
-        //   })
-        // //lock sounds
-        //   this.audioLock = new TNSPlayer();
-        //   this.audioLock.debug = true;
-        //   this.audioLock.initFromUrl({
-        //     audioFile: "https://www.w3schools.com/html/horse.mp3",
-        //     loop: false,
-        //     autoplay: false,
-        //   })
 
     },
     computed: {},
@@ -204,9 +182,6 @@
           var max = 28;
           var momentum = Math.floor(Math.random() * (max - min + 1) + min);
           this.momentum = momentum;
-          // this.audio.spin.play();
-
-
           this.audioSpin.play();
 
 
@@ -238,10 +213,10 @@
 
         } else {
           this.$emit('stopped', this.reelTileData[this.reelIndex]);
+
+          this.audioSpinEnd.play()
           this.audioSpin.pause();
-          // this.audio.spinEnd.play();
-          // this.audio.spin.pause();
-          // this.audio.spin.currentTime = 0.3;
+          this.audioSpin.currentTime = 0.3;
         }
       },
       reIndex: function reIndex() {
@@ -266,7 +241,6 @@
       lock: function lock() {
         if (this.canlock) {
           this.locked = !this.locked;
-          // this.audio.lock.play();
           this.audioLock.play();
         }
       }
