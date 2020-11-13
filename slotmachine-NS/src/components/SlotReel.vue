@@ -148,7 +148,7 @@
       this.reelTileData = frs;
       console.log('[suffle]',this.reelTileData)
     },
-    mounted: function mounted() {
+    mounted: async function mounted() {
       //this.$el.addEventListener("transitionend", this.animateEnd);
 
 
@@ -156,27 +156,43 @@
         //spin sounds
           this.audioSpin = new TNSPlayer();
           this.audioSpin.debug = true;
-          this.audioSpin.initFromUrl({
-            audioFile: "https://www.w3schools.com/html/horse.mp3",
+          // this.audioSpin.initFromFile({
+          //   audioFile: "~/sounds/spin.mp3",
+          //   loop: false,
+          //   autoplay: false,
+          // })
+
+          await this.audioSpin.initFromFile({
+            audioFile: "~/audio/spin.mp3",
             loop: false,
-            autoplay: false,
-          })
-        //spinEnd sounds
-          this.audioSpinEnd = new TNSPlayer();
-          this.audioSpinEnd.debug = true;
-          this.audioSpinEnd.initFromUrl({
-            audioFile: "https://www.w3schools.com/html/horse.mp3",
-            loop: false,
-            autoplay: false,
-          })
-        //lock sounds
-          this.audioLock = new TNSPlayer();
-          this.audioLock.debug = true;
-          this.audioLock.initFromUrl({
-            audioFile: "https://www.w3schools.com/html/horse.mp3",
-            loop: false,
-            autoplay: false,
-          })
+            autoplay: false
+          }).catch(() => {
+            //this.isPlaying = false;
+          });
+
+          //this.isPlaying = true;
+          //this.audioTrackDuration = await this._player.getAudioTrackDuration();
+          // start audio duration tracking
+          // this._startDurationTracking(this.audioTrackDuration);
+          // this._startVolumeTracking();
+
+
+        // //spinEnd sounds
+        //   this.audioSpinEnd = new TNSPlayer();
+        //   this.audioSpinEnd.debug = true;
+        //   this.audioSpinEnd.initFromUrl({
+        //     audioFile: "https://www.w3schools.com/html/horse.mp3",
+        //     loop: false,
+        //     autoplay: false,
+        //   })
+        // //lock sounds
+        //   this.audioLock = new TNSPlayer();
+        //   this.audioLock.debug = true;
+        //   this.audioLock.initFromUrl({
+        //     audioFile: "https://www.w3schools.com/html/horse.mp3",
+        //     loop: false,
+        //     autoplay: false,
+        //   })
 
     },
     computed: {},
@@ -222,6 +238,7 @@
 
         } else {
           this.$emit('stopped', this.reelTileData[this.reelIndex]);
+          this.audioSpin.pause();
           // this.audio.spinEnd.play();
           // this.audio.spin.pause();
           // this.audio.spin.currentTime = 0.3;
