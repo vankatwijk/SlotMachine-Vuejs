@@ -29,6 +29,7 @@
         class="Reel-image" 
         :src="'res://'+reelTileData[tile4Index].image" 
         height="70"
+        backgroundColor="green"
         /> 
 
         <Image 

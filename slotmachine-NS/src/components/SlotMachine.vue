@@ -141,6 +141,7 @@
                 }
             },
             reelStopped: function reelStopped(resultData, wasLocked) {
+                console.log('Result Data',resultData)
                 this.spinReel=false;
                 if (wasLocked) this.waslocked = wasLocked;
 
