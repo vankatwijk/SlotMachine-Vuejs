@@ -31,7 +31,11 @@ html, body {
   height: 100vh;
 }
 .background{
+  background-image: url('res://orangepattern');
+  background-repeat: repeat;
+  background-size: cover;
   background-color: orangered;
+  
 }
 .SlotMachine {
   border-radius: 5px;
